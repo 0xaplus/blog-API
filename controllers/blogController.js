@@ -50,6 +50,7 @@ async function newBlog(req, res) {
 // UPDATE
 async function updateBlogByID(req, res) {
   try {
+    
     const id = req.params.id;
     const content = req.body; // content to update with
 

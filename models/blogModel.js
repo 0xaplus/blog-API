@@ -11,9 +11,16 @@ const blogSchema = new mongoose.Schema({
   author: {
     type: String,
     required: true,
-    // ref:
+    ref: "users"
   },
-  timestamps: { createdAt: 'addedAt', updatedAt: 'modifiedAt' },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  lastUpdatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("blog", blogSchema);

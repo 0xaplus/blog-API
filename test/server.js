@@ -1,9 +1,6 @@
 const express = require("express");
 const { connectToMongoDB } = require("./config/db");
-// const bodyParser = require('body-parser');
-const blogRouter = require("./routes/blogRoutes");
-// const authRouter = require("./routes/authRoutes");
-const userRouter = require("./routes/userRoutes")
+const appRoutes = require("./routes/appRoutes")
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3000;
@@ -19,12 +16,8 @@ process.on("uncaughtException", (err) => {
 const app = express();
 connectToMongoDB();
 
-// app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
-app.use("/blogs", blogRouter);
-app.use("/users", userRouter); 
-// app.use(authRouter);
-
+app.use(appRoutes);
 
 app.get("/", (_, res) => {
   res.status(200).send("Hey there!");
